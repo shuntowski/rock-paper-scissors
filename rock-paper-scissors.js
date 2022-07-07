@@ -12,11 +12,7 @@ function computerPlay(){
     return answers[Math.floor(Math.random() * answers.length)];
 }
 
-const playerSelection = "Scissors";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
-
-// Compare user input and computer input
+// Compare user input and computer input, declare winner
 function playRound(playerSelection, computerSelection){
     //drop case of player choice
     const playerChoiceNoCase = playerSelection.toLowerCase();
@@ -45,5 +41,34 @@ function playRound(playerSelection, computerSelection){
     }
     else {
         return 'Something has gone wrong! Tie!'
+    }
+}
+
+function game(){
+    // Prompt user, take input, play round, declare winner
+    let score = 5;
+
+    for  (let i = 0; i < 5; i++){
+        let playerInput = prompt('Rock, Paper, or Scissors?');
+        let computerInput = computerPlay();
+        let roundResult = playRound(playerInput, computerInput);
+        console.log(roundResult);
+        
+        if (roundResult.slice(0,8) === 'You win!'){
+            score += 1;
+        }
+        else if (roundResult.slice(0,8) === 'You lose'){
+            score -= 1;
+        }
+    }
+
+    if (score > 5){
+        console.log('You WIN!');
+    }
+    else if (score < 5){
+        console.log('You LOSE!');
+    }
+    else {
+        console.log('TIE!');
     }
 }
